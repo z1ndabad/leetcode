@@ -61,6 +61,8 @@ def recursive_dfs(
 # DFS iterates only the # vertices and edges in the connected component
 # The sum of all calls to DFS should be the number of vertices + edges in the graph overall
 # Call to dict.update() is probably too much, adds iterations over the whole graph
+# If graph is all islands, iterate N times, call DFS N times, but DFS only iterates once -- O(V)
+# If graph is complete (all nodes connect to all nodes), iterate N times, call DFS once, DFS iterates V + E times -- O(V + E)
 def find_connected_components(adjacency_list: dict[int, list[int]]):
     visited_overall = {k: False for k in adjacency_list.keys()}
     components = []
@@ -72,6 +74,4 @@ def find_connected_components(adjacency_list: dict[int, list[int]]):
     return components
 
 
-print(iterative_dfs(0, adjacency_list))
-print(recursive_dfs(0, adjacency_list, {k: False for k in adjacency_list.keys()}))
 print(find_connected_components(adjacency_list))
