@@ -6,11 +6,11 @@ import treedata
 import collections
 
 
-# Note the visited collection isn't needed for tree DFS
-# Because the neighbor != parent check ensures the recursion ends
-def find_root(graph: dict[int, list]):
+def find_center(graph: dict[int, list]):
     leaves = collections.deque([node for node in graph if len(graph[node]) == 1])
-    degree = {node: len(graph[node]) for node in graph}
+    degree = [0 for _ in graph]
+    for node in graph:
+        degree[node] = len(graph[node])
     count = len(leaves)
 
     while count < len(graph):
@@ -23,9 +23,11 @@ def find_root(graph: dict[int, list]):
                     new_leaves.append(neighbor)
         count += len(new_leaves)
         leaves = new_leaves
-    return leaves
+    return list(leaves)
 
 
+# Note the visited collection isn't needed for tree DFS
+# Because the neighbor != parent check ensures the recursion ends
 def create_rooted_tree(node_id, graph: dict[int, list], parent) -> treedata.TreeNode:
     res = treedata.TreeNode(node_id, parent)
 
@@ -45,8 +47,35 @@ def print_rooted_tree(root: treedata.TreeNode):
         print_rooted_tree(child)
 
 
+def encode(node: treedata.TreeNode):
+    if node == None:
+        return ""
+
+    labels = []
+
+    for child in node.children:
+        labels.append(encode(child))
+
+    labels.sort()
+    res = "(" + "".join(labels) + ")"
+    return res
+
+
 tree = treedata.UnrootedTree()
-computed_root = find_root(tree.graph)
+computed_root = find_center(tree.graph)
 print(list(computed_root))
 result = create_rooted_tree(0, tree.graph, None)
 print_rooted_tree(result)
+
+tree_to_encode = {0: [1], 1: [0, 2, 4], 2: [1], 4: [1, 3], 3: [4, 5], 5: [3]}
+another_tree_to_encode = {0: [1], 1: [0, 2], 2: [1, 4], 4: [2, 3, 5], 3: [4], 5: [4]}
+
+rooted_tree_to_encode = create_rooted_tree(
+    find_center(tree_to_encode)[0], tree_to_encode, None
+)
+rooted_another_tree = create_rooted_tree(
+    find_center(another_tree_to_encode)[0], another_tree_to_encode, None
+)
+
+print(encode(rooted_tree_to_encode))
+print(encode(rooted_another_tree))
