@@ -7,14 +7,14 @@ import collections
 
 
 def find_center(graph: dict[int, list]):
-    leaves = collections.deque([node for node in graph if len(graph[node]) == 1])
+    leaves = [node for node in graph if len(graph[node]) == 1]
     degree = [0 for _ in graph]
     for node in graph:
         degree[node] = len(graph[node])
     count = len(leaves)
 
     while count < len(graph):
-        new_leaves = collections.deque()
+        new_leaves = []
         for node in leaves:
             degree[node] = 0
             for neighbor in graph[node]:
@@ -23,7 +23,7 @@ def find_center(graph: dict[int, list]):
                     new_leaves.append(neighbor)
         count += len(new_leaves)
         leaves = new_leaves
-    return list(leaves)
+    return leaves
 
 
 # Note the visited collection isn't needed for tree DFS

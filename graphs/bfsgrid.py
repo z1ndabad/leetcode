@@ -14,20 +14,16 @@ def constructGrid(rows, columns, rocks: list[tuple], goal: tuple):
     return grid
 
 
-def findExit(start, grid: list[list]):
+def findExit(start, end, grid: list[list]):
     # Add sr, sc to queue
     # Visit adjacent unvisited neighbors that do not contain rocks
 
-    def grid_bfs(start, grid, directions):
-        row_count = len(grid)
-        col_count = len(grid[0])
-        visited = [[False for _ in range(col_count)] for _ in range(row_count)]
-        prev = [row[:] for row in visited]
+    def grid_bfs(start, end, grid, directions):
 
-        move_count = 0
-        remaining_nodes_in_layer = 1
-        nodes_in_next_layer = 0
+        visited = [[False for _ in range(len(grid[0]))] for _ in range(len(grid))]
+        prev = [row[:] for row in visited]
         is_end = False
+
         x_start = start[0]
         y_start = start[1]
         x_queue = collections.deque()
@@ -40,15 +36,14 @@ def findExit(start, grid: list[list]):
         while x_queue:
             x = x_queue.pop()
             y = y_queue.pop()
-            if grid[y][x] == "E":
-                is_end = True
+            if (x, y) == end:
                 break
 
             for i in range(len(directions[1])):
                 neighbor_x = x + directions[1][i]
                 neighbor_y = y + directions[0][i]
-                in_bounds = neighbor_x in range(col_count) and neighbor_y in range(
-                    row_count
+                in_bounds = neighbor_x in range(len(grid[0])) and neighbor_y in range(
+                    len(grid)
                 )
 
                 if (
@@ -60,21 +55,12 @@ def findExit(start, grid: list[list]):
                     y_queue.appendleft(neighbor_y)
                     prev[neighbor_y][neighbor_x] = (x, y)
                     visited[neighbor_y][neighbor_x] = True
-                    nodes_in_next_layer = nodes_in_next_layer + 1
 
-            remaining_nodes_in_layer -= 1
-            if remaining_nodes_in_layer == 0:
-                remaining_nodes_in_layer = nodes_in_next_layer
-                nodes_in_next_layer = 0
-                move_count += 1
-
-        if is_end:
-            return move_count, prev
-        return -1
+        return prev
 
     dy = [-1, 1, 0, 0]
     dx = [0, 0, 1, -1]
-    return grid_bfs(start, grid, [dy, dx])
+    return grid_bfs(start, end, grid, [dy, dx])
 
 
 rocks = [(0, 4), (1, 1), (1, 2), (2, 3), (2, 4), (3, 0), (3, 3), (5, 1), (5, 4)]
@@ -84,7 +70,7 @@ for line in grid:
 
 
 def findPath(start, end, grid):
-    (_, prev) = findExit(start, grid)
+    (prev) = findExit(start, end, grid)
     path = []
     at = end
     while at:
@@ -93,8 +79,8 @@ def findPath(start, end, grid):
         at = prev[y][x]
 
     if path and path[-1] == start:
-        return list(reversed(path))
-    return []
+        return (list(reversed(path)), len(path) - 1)
+    return ([], -1)
 
 
-print(findPath((0, 0), (3, 4), grid))
+print(findPath((3, 0), (3, 4), grid))
