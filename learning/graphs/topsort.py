@@ -1,6 +1,3 @@
-import collections
-
-
 def top_sort(graph):
     def dfs_topo(at, V, visited_nodes: list, graph):
         V[at] = True
