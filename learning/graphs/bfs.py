@@ -1,13 +1,19 @@
 import collections
-import dfs
-
-graph = dfs.adjacency_list
+from graphdata import Graph
 
 
+# Process nodes in order of distance from the origin.
+# This uses a queue under the hood because, for a given current node,
+# the node's unvisited neighbors are necessarily further from the origin
+# than the current node. So the PREVIOUS node's neighbors all need to
+# be processed before the current node's neighbors.
+#
+# Taking the current node from the head of a queue, and adding
+# its neighbors to the start of the queue, enforces this behavior
 def bfs_traversal(node: int | str, adjacency_list):
     print("BFS function call")
-    visited = [False] * len(adjacency_list)
-    prev = [None] * len(adjacency_list)
+    visited = [False for _ in adjacency_list]
+    prev = [None for _ in adjacency_list]
     queue = collections.deque()
     queue.appendleft(node)
 
@@ -17,6 +23,7 @@ def bfs_traversal(node: int | str, adjacency_list):
 
         for neighbor in adjacency_list[s]:
             if not visited[neighbor]:
+                # Ensures neighbors with two paths from the origin are not visited twice
                 visited[neighbor] = True
                 prev[neighbor] = s
                 queue.appendleft(neighbor)
@@ -24,6 +31,8 @@ def bfs_traversal(node: int | str, adjacency_list):
     return prev
 
 
+# BFS traverses in order of distance, so for a given end/goal node, the node that was
+# being processed when the end node was marked visited must be 1 step closer to the origin
 def find_shortest_path(
     start: int | str, end: int | str, adjacency_list: dict[int | str, list[int | str]]
 ) -> list:
@@ -31,7 +40,8 @@ def find_shortest_path(
     path = []
     res = []
     at = end
-    while at:
+    # 0 is a valid node ID, so loop should terminate when prev[at] = None
+    while at is not None:
         path.append(at)
         at = prev[at]
 
@@ -40,4 +50,5 @@ def find_shortest_path(
     return res
 
 
-print(find_shortest_path(13, 16, graph))
+graph = Graph().graph
+print(find_shortest_path(0, 9, graph))

@@ -22,7 +22,6 @@ def findExit(start, end, grid: list[list]):
 
         visited = [[False for _ in range(len(grid[0]))] for _ in range(len(grid))]
         prev = [row[:] for row in visited]
-        is_end = False
 
         x_start = start[0]
         y_start = start[1]
@@ -33,13 +32,18 @@ def findExit(start, end, grid: list[list]):
         y_queue.appendleft(y_start)
 
         visited[y_start][x_start] = True
+
+        # Remember x_queue and y_queue will always be the same length
         while x_queue:
             x = x_queue.pop()
             y = y_queue.pop()
             if (x, y) == end:
                 break
 
-            for i in range(len(directions[1])):
+            # Instead of iterating through neighbor nodes, calculate the neighbor
+            # cell positions by iterating through the allowed directions and adding
+            # the direction vector (y, x) to the current cell coords
+            for i in range(len(directions[0])):
                 neighbor_x = x + directions[1][i]
                 neighbor_y = y + directions[0][i]
                 in_bounds = neighbor_x in range(len(grid[0])) and neighbor_y in range(
