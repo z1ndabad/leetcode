@@ -12,7 +12,7 @@ class Solution:
 
 
 # Hashmap problem
-# Return True if the input array contains a duplicate numbers within k hops of each other
+# Return True if the input array contains duplicate numbers within k hops of each other
 # Track the last index each number appeared at in a map
 # Iterate through the input
 # If the current number already exists in the map,
