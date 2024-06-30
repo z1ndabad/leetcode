@@ -38,7 +38,7 @@ def iterative_dfs(node: int, adjacency_list: dict[int, list[int]]):
 
 # Don't specify a default arg for visited
 # Remember that mutable default args (like lists) are stateful and
-# defined at func definition -- the visited list would persist between calls
+# defined at func definition (not at call) -- the visited list would persist between calls
 def recursive_dfs(
     node: int,
     adjacency_list: dict[int, list[int]],

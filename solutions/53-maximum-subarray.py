@@ -1,3 +1,6 @@
+import sys
+
+
 class Solution:
     def maxSubArray(self, nums: list[int]) -> int:
         res = -sys.maxsize
@@ -12,11 +15,12 @@ class Solution:
 
             if res < current_maximum:
                 res = current_maximum
-        
+
         return res
 
+
 # Find maximum subarray -> Kadane's algorithm
-# Intuition: 
+# Intuition:
 # For a subarray that must end at index n, the maximum sum has to either be:
 # 1. The previous maximum sum + arr[n] -- we extend the last maximum subarray to cover n
 # 2. arr[n] itself -- adding arr[n] will not increase the previous maximum sum,
