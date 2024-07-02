@@ -20,4 +20,5 @@ class Solution:
 # If the price at buy < price at sell, the trade is profitable
 # Calculate the profit and update the max if greater than current max
 # Else the sell pointer is on a new lowest price, so update the buy pointer
+# equal to the sell pointer
 # Increment the sell pointer every iteration
