@@ -6,7 +6,7 @@ class Solution:
 
             if numbers[l] + numbers[r] > target:
                 r -= 1
-            
+
             if numbers[l] + numbers[r] < target:
                 l += 1
 
@@ -14,6 +14,7 @@ class Solution:
                 return [l + 1, r + 1]
 
         return []
+
 
 # Given a sorted array of integers, find two numbers that add up to target.
 # Return their indices in numbers, indexed at 1 (not 0).

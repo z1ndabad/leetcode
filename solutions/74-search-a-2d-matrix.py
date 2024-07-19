@@ -21,9 +21,10 @@ class Solution:
                 lo = mid_index + 1
             else:
                 hi = mid_index
-        
+
         final_row, final_col = idx_to_matrix(lo, col_count)
         return True if matrix[final_row][final_col] == target else False
+
 
 # Given a matrix of integers size m*n, with the properties that
 # every row is sorted in non-decreasing order and the first integer

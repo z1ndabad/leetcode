@@ -24,7 +24,7 @@ class Solution:
             second_half.next = prev
             prev = second_half
             second_half = tmp
-        
+
         first_half, second_half = head, prev
 
         while second_half:
@@ -34,6 +34,7 @@ class Solution:
 
             # Increment both pointers
             first_half, second_half = tmp1, tmp2
+
 
 # Given a singly-linked list [0 -> 1 -> 2 -> ... -> n-1 -> n],
 # reorder it to the form [0 -> n -> 1 -> n-1 -> 2 -> ...]
@@ -48,7 +49,7 @@ class Solution:
 # a slow + fast pointer approach. Set a slow pointer at
 # index 0 and fast at index 1 (head and head.next), increment
 # the slow by 1 and fast by 2 until reaching the end of the
-# list. 
+# list.
 #
 # At the end of the loop, fast pointer will be at the end
 # of the list, and slow will be at the middle (end of the first

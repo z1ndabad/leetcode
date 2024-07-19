@@ -6,6 +6,8 @@
 #         self.right = right
 
 from collections import deque
+
+
 class Solution:
     def levelOrder(self, root: Optional[TreeNode]) -> list[list[int]]:
         queue = deque()
@@ -18,10 +20,10 @@ class Solution:
             current_level = []
             r = range(len(queue))
 
-            for _ in r: 
+            for _ in r:
                 node = queue.pop()
                 current_level.append(node.val)
-                
+
                 if node.left:
                     queue.appendleft(node.left)
 
@@ -30,6 +32,7 @@ class Solution:
 
             res.append(current_level)
         return res
+
 
 # Given the root of a binary tree (object), return the values
 # in the tree as a level-order traversal -- i.e. return

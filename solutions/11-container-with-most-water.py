@@ -6,7 +6,7 @@ class Solution:
 
         while l < r:
             current_area = (r - l) * min(height[r], height[l])
-            
+
             if current_area > max_area:
                 max_area = current_area
 
@@ -16,6 +16,7 @@ class Solution:
                 r -= 1
 
         return max_area
+
 
 # Given an array where each index is a horizontal position of a line, and
 # each value is the vertical height of that line, return the size of the

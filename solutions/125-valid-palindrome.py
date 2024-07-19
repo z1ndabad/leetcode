@@ -17,6 +17,7 @@ class Solution:
 
         return True
 
+
 print(Solution().isPalindrome("A man, a plan, a canal: Panama"))
 
 # For this problem, algo must ignore spaces and non-alphanumeric characters
@@ -27,7 +28,7 @@ print(Solution().isPalindrome("A man, a plan, a canal: Panama"))
 #
 # Once both pointers are at an equivalent alnum character, compare and return
 # False if characters are not equal. Move pointers forward/back by 1
-# at the end of the loop. 
-# 
+# at the end of the loop.
+#
 # Keep in mind it doesn't matter if l == r at one point within the
 # loop (i.e. on the final iteration), because then s[l] must equal s[r].

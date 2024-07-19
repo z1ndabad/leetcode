@@ -1,5 +1,6 @@
 from collections import defaultdict, deque
 
+
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: list[str]) -> int:
 
@@ -8,13 +9,13 @@ class Solution:
         def get_templates(word) -> list[str]:
             res = []
             for i in range(len(word)):
-                letter_change = word[:i] + '*' + word[i + 1:]
+                letter_change = word[:i] + "*" + word[i + 1 :]
                 res.append(letter_change)
-            
+
             return res
-        
+
         swap_templates = defaultdict(list)
-        
+
         for word in wordList:
             templates = get_templates(word)
             for template in templates:
@@ -28,7 +29,6 @@ class Solution:
         current_layer = 1
         next_layer = 0
         depth = 1
-
 
         queue.appendleft(beginWord)
         visited.add(beginWord)
@@ -52,8 +52,9 @@ class Solution:
                 current_layer = next_layer
                 next_layer = 0
                 depth += 1
-    
+
         return 0
+
 
 # Woof! Given a beginWord, an endWord, and a list of possible intermediary
 # words, return the length of the shortest sequence to transform beginWord
@@ -98,24 +99,23 @@ class Solution:
 # Then we run a normal BFS starting from beginWord. We find neighbors by
 # finding the intermediary states of the current node, iterating over
 # all of them, and doing a nested iteration over the words mapped to each
-# intermediary state in the dict. 
-# 
+# intermediary state in the dict.
+#
 # If an intermediary state is shared with endWord, we can return. We use
 # variables to track the # words to be explored in the current layer of the
 # graph, # words in the next layer, and the depth. For every neighbor found,
 # increment next_layer by 1. When current_layer == 0, set current_layer to
-# next_layer and increment depth. 
-# 
+# next_layer and increment depth.
+#
 # Depth will always track the distance of
 # the current node from the origin, so return depth + 1 since we return
-# before processing (popping) the end node. Look at 
+# before processing (popping) the end node. Look at
 # https://www.youtube.com/watch?v=KiCBXu4P-2Y for the same approach applied
 # to a grid.
-# 
+#
 # In the BFS, getting the intermed. states takes M^2, and in the worst case we
-# visit every word for N while loop iterations, so BFS takes O(M^2 * N) as 
+# visit every word for N while loop iterations, so BFS takes O(M^2 * N) as
 # well.
 #
 # Time complexity = O(NM^2) to build the dict, O(NM^2) to perform BFS, for
 # a result of O(NM^2).
-

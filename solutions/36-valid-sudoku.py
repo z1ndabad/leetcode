@@ -13,10 +13,14 @@ class Solution:
                 # Box 0 = 0 + 0, Box 2 = 0 + 2, Box 3 = (1) * 3 + (0)
                 box_number = (i // 3) * 3 + (j // 3)
 
-                if cell in current_row or cell in columns[j] or cell in boxes[box_number]:
+                if (
+                    cell in current_row
+                    or cell in columns[j]
+                    or cell in boxes[box_number]
+                ):
                     return False
-                
-                if cell != '.':
+
+                if cell != ".":
                     current_row.add(cell)
                     columns[j].add(cell)
                     boxes[box_number].add(cell)
@@ -24,6 +28,7 @@ class Solution:
             current_row.clear()
 
         return True
+
 
 # Given a 9x9 Sudoku board with some or all cells filled, determine if it
 # is valid (no repeated numbers in each row, column and 3x3 box).

@@ -4,16 +4,15 @@ class Solution:
         answer = [0 for _ in temperatures]
 
         for i, temp in enumerate(temperatures):
-            
+
             while index_stack and temp > temperatures[index_stack[-1]]:
                 colder_day = index_stack.pop()
                 answer[colder_day] = i - colder_day
 
             index_stack.append(i)
-        
+
         return answer
 
-       
 
 # Given an array of temperatures where temperatures[i] is the temp on the
 # i-th day, return an array res such that res[i] is the number of days,
@@ -39,6 +38,6 @@ class Solution:
 # WHILE the current temperature is larger than the last element
 # of the stack j, pop the last element and set res[j] to i - j,
 # the difference between the current day and the last day that
-# was lower in temperature. 
+# was lower in temperature.
 #
 # Append i to the stack

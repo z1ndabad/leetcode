@@ -14,6 +14,7 @@ class Solution:
 
         return not stack
 
+
 # Given a string containing only parentheses, return true if all parents are
 # closed correctly
 #
@@ -28,6 +29,6 @@ class Solution:
 # early.
 #
 # Otherwise return true if the stack is empty by the end.
-# 
+#
 # Note: it might seem smart to return False early if len(s) is odd, and that may
 # be true for really long inputs, but for short inputs it works out slower.

@@ -1,4 +1,3 @@
-
 class MinStack:
 
     def __init__(self):
@@ -22,7 +21,8 @@ class MinStack:
 
     def getMin(self) -> int:
         return self.mins[-1]
- 
+
+
 # Design a stack that supports push, pop, top, and retrieving the minimum
 # element, all in O(1) time. getMin() does not remove elements from the stack.
 #

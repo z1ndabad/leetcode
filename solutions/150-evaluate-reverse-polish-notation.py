@@ -2,17 +2,17 @@ class Solution:
     def evalRPN(self, tokens: list[str]) -> int:
 
         ops = {
-            '+': lambda a, b: a + b,
-            '-': lambda a, b: a - b,
-            '*': lambda a, b: a * b,
-            '/': lambda a, b: int(a / b)
+            "+": lambda a, b: a + b,
+            "-": lambda a, b: a - b,
+            "*": lambda a, b: a * b,
+            "/": lambda a, b: int(a / b),
         }
 
         stack = []
 
         for token in tokens:
             # Token is a number:
-            if token.lstrip('-').isdigit():
+            if token.lstrip("-").isdigit():
                 stack.append(int(token))
             else:
                 b = stack.pop()
@@ -21,6 +21,7 @@ class Solution:
                 stack.append(result)
 
         return stack[0]
+
 
 # Given a reverse Polish notation expression, calculate and return the result.
 # All division results must be rounded towards 0 (-3 / 2 == -1)

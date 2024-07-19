@@ -17,6 +17,7 @@ class Solution:
 
         return -1
 
+
 # Given a sorted array that has been rotated any number of times,
 # return the value of the minimum element in the array. Rotation
 # means values are shifted n to the right, [0,1,2,3] -> [3,0,1,2]
