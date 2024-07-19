@@ -5,7 +5,7 @@
 #         self.next = next
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
-        dummy = ListNode(next = head)
+        dummy = ListNode(next=head)
         tail = head
         pre_removal_pointer = dummy
         last_index = 0
@@ -16,12 +16,12 @@ class Solution:
 
             if last_index > n - 1:
                 pre_removal_pointer = pre_removal_pointer.next
-    
+
         pre_removal_pointer.next = pre_removal_pointer.next.next
 
         return dummy.next
 
-            
+
 # Given the head of a linked list, remove the nth node from the end of the
 # list and return its head.
 # e.g. head = [1, 2, 3, 4], n = 1 -> [1, 2, 3]
@@ -32,7 +32,7 @@ class Solution:
 # We need to find the end of the list no matter what -- do this with a pointer
 # and while loop.
 #
-# Then we need to remove the node at index [len - n], or [last - (n - 1)]. 
+# Then we need to remove the node at index [len - n], or [last - (n - 1)].
 # That means finding node [len - n - 1] and setting next = next.next, skipping
 # the node to be deleted. Intialize a PRE-DELETION POINTER to find this node.
 #

@@ -1,3 +1,6 @@
+import math
+
+
 class Solution:
     def minEatingSpeed(self, piles: list[int], h: int) -> int:
         min_speed, max_speed = 1, max(piles)
