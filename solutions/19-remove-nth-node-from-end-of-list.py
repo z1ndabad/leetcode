@@ -6,19 +6,35 @@
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         dummy = ListNode(next=head)
-        tail = head
-        pre_removal_pointer = dummy
-        last_index = 0
+        tail = pre_removal_pointer = dummy
+        length = 0 
 
         while tail.next:
             tail = tail.next
-            last_index += 1
 
-            if last_index > n - 1:
+            if length >= n:
                 pre_removal_pointer = pre_removal_pointer.next
+
+            length += 1
 
         pre_removal_pointer.next = pre_removal_pointer.next.next
 
+        return dummy.next
+
+    def removeNthFromEndAlt(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        dummy = ListNode(next=head)
+        fast = slow = dummy
+        gap = 0
+
+        while gap < n and fast.next:
+            fast = fast.next
+            gap += 1
+
+        while fast.next:
+            fast = fast.next
+            slow = slow.next
+
+        slow.next = slow.next.next
         return dummy.next
 
 
