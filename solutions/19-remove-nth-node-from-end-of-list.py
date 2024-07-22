@@ -7,7 +7,7 @@ class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
         dummy = ListNode(next=head)
         tail = pre_removal_pointer = dummy
-        length = 0 
+        length = 0
 
         while tail.next:
             tail = tail.next
@@ -21,7 +21,9 @@ class Solution:
 
         return dummy.next
 
-    def removeNthFromEndAlt(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+    def removeNthFromEndAlt(
+        self, head: Optional[ListNode], n: int
+    ) -> Optional[ListNode]:
         dummy = ListNode(next=head)
         fast = slow = dummy
         gap = 0

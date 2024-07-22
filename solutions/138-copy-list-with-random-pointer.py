@@ -7,16 +7,17 @@ class Node:
         self.random = random
 """
 
+
 class Solution:
-    def copyRandomList(self, head: 'Optional[Node]') -> 'Optional[Node]':
-        old_to_copy = {None : None}
+    def copyRandomList(self, head: "Optional[Node]") -> "Optional[Node]":
+        old_to_copy = {None: None}
 
         curr = head
 
         while curr:
             old_to_copy[curr] = Node(curr.val)
             curr = curr.next
-           
+
         curr = head
 
         while curr:
@@ -26,6 +27,7 @@ class Solution:
             curr = curr.next
 
         return old_to_copy[head]
+
 
 # Given a linked list where each node contains a pointer to the next node, and
 # a 'random' pointer that can point to any node in the list or null, return

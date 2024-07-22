@@ -4,7 +4,9 @@
 #         self.val = val
 #         self.next = next
 class Solution:
-    def addTwoNumbers(self, l1: Optional[ListNode], l2: Optional[ListNode]) -> Optional[ListNode]:
+    def addTwoNumbers(
+        self, l1: Optional[ListNode], l2: Optional[ListNode]
+    ) -> Optional[ListNode]:
         dummy = ListNode()
         res_digit = dummy
         l1_digit = l1
@@ -18,7 +20,7 @@ class Solution:
             digit_sum = l1_val + l2_val + carry_over
             carry_over = digit_sum // 10
             res_digit.next = ListNode(digit_sum % 10)
-            
+
             res_digit = res_digit.next
 
             l1_digit = l1_digit.next if l1_digit else None
@@ -30,9 +32,9 @@ class Solution:
         return dummy.next
 
 
-# Given two non-empty linked lists, each representing a non-negative integer 
-# with the digits in reverse order, return a list in the same format 
-# representing the sum. e.g., [0, 0, 1] + [0, 1, 2] = [0, 1, 3] 
+# Given two non-empty linked lists, each representing a non-negative integer
+# with the digits in reverse order, return a list in the same format
+# representing the sum. e.g., [0, 0, 1] + [0, 1, 2] = [0, 1, 3]
 # -- 100 + 210 = 310
 #
 # This is the same as a written sum:
