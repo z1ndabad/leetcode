@@ -3,10 +3,12 @@ from collections import deque
 
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
-        if not root:
-            return 0
+        def max_height(root: Optional[TreeNode]) -> int:
+            if not root:
+                return -1
+            return max(max_height(root.left), max_height(root.right)) + 1
 
-        return max(self.maxDepth(root.left), self.maxDepth(root.right)) + 1
+        return max_height(root) + 1
 
     def maxDepthIterative(self, root: Optional[TreeNode]) -> int:
         stack = []
@@ -58,6 +60,11 @@ class Solution:
 #
 # DFS recursive -- at a leaf node, return 0. Otherwise return the maximum
 # of maxDepth(left) and maxDepth(right) + 1
+#
+# NOTE: defining a helper method that returns the 0-based max height, instead
+# of the 1-based max height, and then returning helper(root) + 1 is a better
+# general approach for other problems like 543 Diameter of Binary Tree, and
+# 110 Balanced Binary Tree.
 #
 # DFS iterative -- modify the normal stack to contain a tuple of (depth, node)
 # where the depth of the root is 1. A node's children will have a depth of
