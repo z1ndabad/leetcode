@@ -33,7 +33,7 @@ class Solution:
         root.left = self.invertTreeRecursive(tmp)
 
         return root
-        
+
 
 # Given the root of a binary tree, invert the tree and return the root.
 # e.g. [2, 1, 3] --> [2, 3, 1]

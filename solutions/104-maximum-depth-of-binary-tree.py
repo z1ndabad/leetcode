@@ -1,5 +1,6 @@
 from collections import deque
 
+
 class Solution:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         if not root:
@@ -10,7 +11,7 @@ class Solution:
     def maxDepthIterative(self, root: Optional[TreeNode]) -> int:
         stack = []
         depth = 0
-        
+
         if root:
             stack.append((1, root))
 
@@ -25,8 +26,6 @@ class Solution:
                 stack.append((current_depth + 1, node.right))
 
         return depth
-
-
 
     def maxDepthBfs(self, root: Optional[TreeNode]) -> int:
         queue = deque()
@@ -48,6 +47,7 @@ class Solution:
                     queue.appendleft(node.right)
 
         return depth
+
 
 # Given the root of a binary tree, return the maximum depth of the tree.
 # The depth of the root is 1.
