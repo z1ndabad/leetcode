@@ -37,3 +37,19 @@ class Solution:
 # NOTICE that if subroot is a subtree of root, root must contain a subtree that
 # is identical to subroot. i.e. for some node in the root tree,
 # isSameTree(node, subroot) must be true.
+#
+# Write a helper function that compares two trees and returns true if they are
+# equal. This function runs in O(M) time where M is the # nodes in the smaller
+# tree (subroot).
+#
+# Then iterate through the tree depth-first. If the current node and subroot
+# have the same value, check if the two trees are equal. If yes return true,
+# otherwise continue until we have traversed the entire tree. This takes
+# O(N) time, with 1 call to the helper function for every node with the same
+# value as subroot.
+# 
+# Overall time complexity O(N)
+#
+# The optimal solution involves serializing or hashing both trees and checking
+# whether the string rep/hash of root includes that of subroot. This is a
+# pain in the ass, so I will learn it later.
