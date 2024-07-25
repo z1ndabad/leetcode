@@ -1,9 +1,11 @@
 class Solution:
-    def isSubtreeNaive(self, root: Optional[TreeNode], subRoot: Optional[TreeNode]) -> bool:
+    def isSubtreeNaive(
+        self, root: Optional[TreeNode], subRoot: Optional[TreeNode]
+    ) -> bool:
         def isSameTree(p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
             if not p and not q:
                 return True
-            
+
             if not p or not q:
                 return False
 
@@ -29,6 +31,7 @@ class Solution:
 
         return False
 
+
 # Given a tree (root) and a possible subtree(subroot), return whether subroot
 # is a subtree of root.
 #
@@ -47,7 +50,7 @@ class Solution:
 # otherwise continue until we have traversed the entire tree. This takes
 # O(N) time, with 1 call to the helper function for every node with the same
 # value as subroot.
-# 
+#
 # Overall time complexity O(N)
 #
 # The optimal solution involves serializing or hashing both trees and checking
