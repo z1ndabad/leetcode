@@ -18,3 +18,10 @@ class TreeNode:
         self.id = id
         self.parent = None if parent == None else parent
         self.children = [] if not children else children
+
+
+class BinaryNode:
+    def __init__(self, val=0, left=None, right=None) -> None:
+        self.val = val
+        self.left = left
+        self.right = right
