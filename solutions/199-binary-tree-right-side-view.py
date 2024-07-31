@@ -1,5 +1,6 @@
 from collections import deque
 
+
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -24,11 +25,11 @@ class Solution:
                     queue.appendleft(node.left)
                 if node.right:
                     queue.appendleft(node.right)
-            
+
             # After the for loop runs, node is always the rightmost node
             # in its level of the tree
             res.append(node.val)
-        
+
         return res
 
     def rightSideViewRecursive(self, root: Optional[TreeNode]) -> list[int]:
@@ -46,6 +47,7 @@ class Solution:
 
         helper(root, 0)
         return res
+
 
 # Given the root of a binary tree, imagine yourself standing on the right side
 # of it, and return the values of nodes you can see ordered top to bottom.

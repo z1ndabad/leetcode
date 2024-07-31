@@ -11,7 +11,7 @@ class Solution:
 
         while stack:
             node, current_largest = stack.pop()
-            
+
             if node.val >= current_largest:
                 good += 1
 
@@ -25,13 +25,13 @@ class Solution:
         return good
 
     def goodNodesRecursive(self, root: TreeNode) -> int:
-        
+
         def dfs(node, current_largest):
             nonlocal good
             if node.val >= current_largest:
                 good += 1
                 current_largest = node.val
-            
+
             if node.left:
                 dfs(node.left, current_largest)
             if node.right:
@@ -41,6 +41,7 @@ class Solution:
         dfs(root, root.val)
 
         return good
+
 
 # Given a binary tree root, a node X is good if in the path from the root to X,
 # there are no nodes with a value greater than X. The root is always good.
@@ -59,9 +60,9 @@ class Solution:
 # earlier ancestor that was larger. We can STORE THIS STATE by turning the
 # traversal collection (stack/queue/recursion stack) into a set of TUPLES.
 #
-# Instead of [node1, node2, ...], 
+# Instead of [node1, node2, ...],
 # store [(node1, node1.val OR MAXIMUM), (node2, node2.val OR MAXIMUM)]
-# 
+#
 # If the value of the current node >= max so far, increment count of good
 # nodes.
 #
