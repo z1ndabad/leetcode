@@ -25,9 +25,9 @@ def dfs_preorder(root: BinaryNode | None):
 def dfs_inorder(root: BinaryNode | None):
     if not root:
         return
-    dfs_preorder(root.left)
+    dfs_inorder(root.left)
     print(root.val)
-    dfs_preorder(root.right)
+    dfs_inorder(root.right)
 
 
 def dfs_postorder(root: BinaryNode | None):
@@ -94,5 +94,23 @@ def dfs_preorder_iterative(root: BinaryNode | None):
                 stack.append(child)
 
 
+def dfs_inorder_iterative(root: BinaryNode | None):
+    stack = []
+    current = root
+
+    while current or stack:
+        while current:
+            stack.append(current)
+            current = current.left
+
+        current = stack.pop()
+        print(current.val)
+
+        current = current.right
+
+
 print("Iterative preorder")
 dfs_preorder_iterative(binary_tree)
+
+print("Iterative inorder")
+dfs_inorder_iterative(binary_tree)
